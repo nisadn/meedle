@@ -1,6 +1,7 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react';
 import { IoMdSearch } from 'react-icons/io';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function Home() {
 
@@ -14,13 +15,17 @@ export default function Home() {
 }
 
   return (
-    <div className='py-20 px-4 md:px-14' data-testid='content'>
-      <Flex w='screen' direction='column' textAlign='center' gap='6' p='14' align='center'>
+    <div className='py-20 px-2 md:px-14' data-testid='content'>
+      <Head>
+          <title>Welcome to Meedle!</title>
+          <meta name="description" content="Welcome to Meedle! - Your medical search engine." />
+      </Head>
+      <Flex w='screen' direction='column' textAlign='center' gap='6' py='14' px={['8','14','8']} align='center'>
             <Flex align='center' direction='column' w='full' justify='center' gap={[4,6,6]}>
                 <Text as='span'
                     bgGradient='linear(to-r, green.300, blue.500)'
                     bgClip='text'
-                    fontSize={['4xl','5xl','7xl']}
+                    fontSize={['6xl','6xl','7xl']}
                     fontWeight='bold'
                     w='fit-content'
                     align='center'
@@ -36,14 +41,12 @@ export default function Home() {
             </Flex>
 
             <Flex className="relative block w-full md:w-1/2">
-            <span className="sr-only">Search</span>
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3 mt-3">
-                <IoMdSearch />
-            </span>
-            <input className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-md focus:outline-none focus:border-sky-500 mt-3 focus:ring-sky-500 focus:ring-1 sm:text-sm" 
-                placeholder={`Type anything here`} type="text" name="search" 
-                onKeyDown={handleKeyDown} 
-                />
+              <Flex w='full'>
+                    <InputGroup>
+                        <Input placeholder='Type anything here' borderRadius="full" shadow="base" onKeyDown={handleKeyDown} />
+                        <InputLeftElement children={<IoMdSearch color='blue' />} />
+                    </InputGroup>
+                </Flex>
             </Flex>
         </Flex>
     </div>
