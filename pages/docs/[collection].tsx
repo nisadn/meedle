@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { retrievalApi } from "../../config/service/retrievalApi";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { Error, Loading, NotFound } from "../../components/State";
+import Head from "next/head";
 
 type Docs = {
     title: string;
@@ -65,6 +66,10 @@ const Detail = () => {
         <div 
         className='px-8 py-4 mb-16' data-testid='content'
         >
+            <Head>
+                <title>{collection}/{id}</title>
+                <meta name="description" content={`meedle - ${collection}/${id}`} />
+            </Head>
             <Flex gap={6} direction='column'>
                 <Flex>
                     <Text as='span'
