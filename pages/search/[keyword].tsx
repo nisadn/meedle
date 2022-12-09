@@ -53,11 +53,18 @@ const Search = () => {
     setStart(new Date());
     retrievalApi.search(data).then((res) => {
         let docs = res.data.docs_id 
-        setDocsId(docs);
-        setCurrentDocsId(docs.slice((currentPage-1)*10, currentPage*10))
-        let len_res = res.data.retrieved;
-        setRetrieved(len_res);
-        setTotalPages(Math.ceil(len_res/10));
+        if (docs) {
+            setDocsId(docs);
+            setCurrentDocsId(docs.slice((currentPage-1)*10, currentPage*10))
+            let len_res = res.data.retrieved;
+            setRetrieved(len_res);
+            setTotalPages(Math.ceil(len_res/10));
+        } else {
+            setDocsId([]);
+            setCurrentDocsId([]);
+            setRetrieved(0);
+            setTotalPages(0);
+        }
     }).catch(() => {
         setDocsId([]);
         setCurrentDocsId([]);
